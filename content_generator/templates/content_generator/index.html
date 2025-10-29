@@ -1,0 +1,86 @@
+{% extends "content_generator/base.html" %}
+
+{% block title %}Generate Course - Faculty AI Content Tool{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Generate AI-Powered Course Content</h2>
+    <p>Fill out the form below to generate a complete course with weekly modules, introduction pages, and lecture content. The generated content will be packaged as a Common Cartridge file that you can upload to Canvas.</p>
+
+    <form method="post" id="courseForm">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.course_name.id_for_label }}">Course Name *</label>
+            {{ form.course_name }}
+            <span class="help-text">{{ form.course_name.help_text }}</span>
+            {% if form.course_name.errors %}
+                <div class="alert alert-error">{{ form.course_name.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.subject_area.id_for_label }}">Subject Area *</label>
+            {{ form.subject_area }}
+            <span class="help-text">{{ form.subject_area.help_text }}</span>
+            {% if form.subject_area.errors %}
+                <div class="alert alert-error">{{ form.subject_area.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.num_weeks.id_for_label }}">Number of Weeks *</label>
+            {{ form.num_weeks }}
+            <span class="help-text">{{ form.num_weeks.help_text }}</span>
+            {% if form.num_weeks.errors %}
+                <div class="alert alert-error">{{ form.num_weeks.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.target_audience.id_for_label }}">Target Audience *</label>
+            {{ form.target_audience }}
+            <span class="help-text">{{ form.target_audience.help_text }}</span>
+            {% if form.target_audience.errors %}
+                <div class="alert alert-error">{{ form.target_audience.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.additional_context.id_for_label }}">Additional Context</label>
+            {{ form.additional_context }}
+            <span class="help-text">{{ form.additional_context.help_text }}</span>
+            {% if form.additional_context.errors %}
+                <div class="alert alert-error">{{ form.additional_context.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn">Generate Course Content</button>
+    </form>
+
+    <div class="loading">
+        <div class="spinner"></div>
+        <p style="margin-top: 15px;">Generating course content... This may take several minutes depending on the number of weeks.</p>
+    </div>
+</div>
+
+<div class="card">
+    <h3>What You'll Get</h3>
+    <ul>
+        <li><strong>Weekly Modules:</strong> Organized structure for each week of your course</li>
+        <li><strong>Introduction Pages:</strong> Engaging introductions with learning objectives for each week</li>
+        <li><strong>Lecture Content:</strong> Comprehensive lecture pages covering weekly topics</li>
+        <li><strong>Common Cartridge Format:</strong> Ready to import directly into Canvas LMS</li>
+    </ul>
+
+    <h3>How to Import to Canvas</h3>
+    <ol>
+        <li>Download the generated .imscc file</li>
+        <li>In Canvas, go to your course and click "Settings"</li>
+        <li>Click "Import Course Content"</li>
+        <li>Select "Common Cartridge 1.x Package" as the content type</li>
+        <li>Upload the .imscc file and click "Import"</li>
+        <li>Review and publish the imported content</li>
+    </ol>
+</div>
+{% endblock %}
