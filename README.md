@@ -1,6 +1,30 @@
 # Faculty AI Content Tool
 
-A Django web application that allows faculty to generate AI-powered course content and export it as Common Cartridge files for import into Canvas LMS.
+Generate AI-powered course content and export it as Common Cartridge files for import into Canvas LMS.
+
+## 🚀 Two Versions Available
+
+### 🌐 Standalone HTML Version (Easiest!)
+**Perfect for individual faculty members**
+
+- ✅ **No installation required** - just open `faculty_content_generator.html` in your browser
+- ✅ **No server needed** - runs entirely in your browser
+- ✅ **Portable** - one file you can share with colleagues
+- 👉 [See Standalone Instructions](STANDALONE_README.md)
+
+### 🐍 Django Web Application
+**Perfect for institutions and teams**
+
+- ✅ Secure server-side API key storage
+- ✅ User authentication and access control
+- ✅ Better for team environments
+- 👉 See installation instructions below
+
+---
+
+## Django Web Application
+
+A full-featured Django web application that allows faculty to generate AI-powered course content and export it as Common Cartridge files for import into Canvas LMS.
 
 ## Features
 
