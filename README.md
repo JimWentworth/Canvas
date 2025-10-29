@@ -2,15 +2,36 @@
 
 Generate AI-powered course content and export it as Common Cartridge files for import into Canvas LMS.
 
-## 🚀 Two Versions Available
+## ⚡ RECOMMENDED: HTML + Simple Proxy (Easiest!)
 
-### 🌐 Standalone HTML Version (Easiest!)
-**Perfect for individual faculty members**
+**Get started in 5 minutes!**
 
-- ✅ **No installation required** - just open `faculty_content_generator.html` in your browser
-- ✅ **No server needed** - runs entirely in your browser
-- ✅ **Portable** - one file you can share with colleagues
-- 👉 [See Standalone Instructions](STANDALONE_README.md)
+1. Get a free API key from https://console.anthropic.com/
+2. Create `.env` file: `echo "ANTHROPIC_API_KEY=your_key" > .env`
+3. Install: `pip install -r proxy_requirements.txt`
+4. Run: `python proxy_server.py`
+5. Open `faculty_content_generator.html` in your browser
+
+**👉 [Complete Quick Start Guide](QUICKSTART.md)**
+
+---
+
+## 🚀 All Available Versions
+
+### ⚡ HTML + Proxy (RECOMMENDED)
+**Perfect for individual faculty - simple and fast**
+
+- ✅ **5-minute setup** - minimal configuration
+- ✅ **Lightweight** - just Python + HTML
+- ✅ **Secure** - API key stays on your computer
+- ✅ **No database** - no complex setup
+- 👉 [Quick Start Guide](QUICKSTART.md)
+
+### 🌐 Standalone HTML (Deprecated)
+**Note: Doesn't work due to browser CORS restrictions**
+
+- ❌ Cannot call Anthropic API from browser
+- 👉 Use HTML + Proxy version instead
 
 ### 🐍 Django Web Application
 **Perfect for institutions and teams**
