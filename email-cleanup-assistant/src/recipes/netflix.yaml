@@ -1,0 +1,68 @@
+# Netflix Email Update Recipe
+id: netflix
+name: Netflix
+category: Streaming
+difficulty: easy
+
+login:
+  url: "https://www.netflix.com/login"
+  username_selector: "#id_userLoginId"
+  password_selector: "#id_password"
+  submit_selector: "button[type=submit]"
+  wait_after_login: 3000
+
+profile_flow:
+  steps:
+    - action: navigate
+      url: "https://www.netflix.com/YourAccount"
+      description: "Navigate to account settings"
+
+    - action: wait
+      selector: "a[href*='email']"
+      timeout: 5000
+      description: "Wait for account page to load"
+
+    - action: click
+      selector: "a[href*='email']"
+      description: "Click on 'Change email' link"
+
+    - action: wait
+      selector: "input[name='email']"
+      timeout: 5000
+      description: "Wait for email input field"
+
+    - action: fill
+      selector: "input[name='email']"
+      value: "{{NEW_EMAIL}}"
+      description: "Enter new email address"
+
+    - action: fill
+      selector: "input[name='password']"
+      value: "{{PASSWORD}}"
+      description: "Confirm with password"
+
+    - action: click
+      selector: "button[type='submit']"
+      description: "Submit email change"
+
+    - action: waitForEmailVerification
+      timeout: 300000
+      description: "Wait for email verification (5 minutes)"
+
+verification:
+  required: true
+  email_subject_contains: "Verify your email"
+  verification_link_pattern: "https://www\\.netflix\\.com/verify.*"
+
+notes: |
+  Netflix requires email verification after changing your email.
+  Make sure you have access to the new email inbox to complete the process.
+
+manual_fallback: |
+  1. Log in to Netflix
+  2. Go to Account Settings
+  3. Click "Change email"
+  4. Enter new email and your password
+  5. Click "Save"
+  6. Check your new email for verification link
+  7. Click the verification link to complete

@@ -1,0 +1,50 @@
+# Demo Site Recipe (for testing)
+id: demo-site
+name: Demo Test Site
+category: Testing
+difficulty: easy
+
+login:
+  url: "https://example.com/login"
+  username_selector: "#username"
+  password_selector: "#password"
+  submit_selector: "button[type=submit]"
+  wait_after_login: 2000
+
+profile_flow:
+  steps:
+    - action: navigate
+      url: "https://example.com/settings"
+      description: "Navigate to settings page"
+
+    - action: wait
+      selector: "#email-input"
+      timeout: 5000
+      description: "Wait for settings page to load"
+
+    - action: fill
+      selector: "#email-input"
+      value: "{{NEW_EMAIL}}"
+      description: "Enter new email address"
+
+    - action: click
+      selector: "#save-button"
+      description: "Click save button"
+
+    - action: wait
+      selector: ".success-message"
+      timeout: 5000
+      description: "Wait for success confirmation"
+
+verification:
+  required: false
+
+notes: |
+  This is a demo recipe for testing the automation engine.
+  It represents a simple site with straightforward email update flow.
+
+manual_fallback: |
+  1. Log in to the site
+  2. Go to Settings
+  3. Update email field
+  4. Click Save

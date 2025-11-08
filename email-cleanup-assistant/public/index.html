@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Cleanup AI Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📧 Email Cleanup AI Assistant</h1>
+      <p class="subtitle">Consolidate your online accounts under one email address</p>
+    </header>
+
+    <div class="main-content">
+      <!-- Chat Section -->
+      <section class="chat-section">
+        <div class="chat-header">
+          <h2>AI Assistant</h2>
+          <div class="status-indicator" id="status">
+            <span class="dot"></span>
+            <span id="statusText">Connecting...</span>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <div class="message assistant">
+            <div class="message-content">
+              <strong>Assistant:</strong>
+              <p>Initializing...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input">
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Type your message..."
+            autocomplete="off"
+          />
+          <button id="sendBtn">Send</button>
+        </div>
+      </section>
+
+      <!-- Sites Section -->
+      <section class="sites-section">
+        <div class="sites-header">
+          <h2>Available Sites</h2>
+          <button id="refreshSitesBtn" class="btn-secondary">Refresh</button>
+        </div>
+
+        <div class="sites-list" id="sitesList">
+          <p class="loading">Loading recipes...</p>
+        </div>
+
+        <div class="action-panel" id="actionPanel" style="display: none;">
+          <h3>Execute Automation</h3>
+          <div class="form-group">
+            <label for="siteSelect">Site:</label>
+            <select id="siteSelect"></select>
+          </div>
+          <div class="form-group">
+            <label for="username">Username/Email:</label>
+            <input type="text" id="username" placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="••••••••" />
+          </div>
+          <div class="form-group">
+            <label for="newEmail">New Email:</label>
+            <input type="email" id="newEmail" placeholder="new@email.com" />
+          </div>
+          <button id="executeBtn" class="btn-primary">Execute</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Progress Modal -->
+    <div id="progressModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <h3>Automation in Progress</h3>
+        <div class="progress-info">
+          <p id="progressSite"></p>
+          <p id="progressStep"></p>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="progress-note">Please do not close this window</p>
+      </div>
+    </div>
+
+    <footer>
+      <p>Email Cleanup AI Assistant v0.1.0 | Local & Secure</p>
+      <button id="resetBtn" class="btn-link">Reset Session</button>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
