@@ -1,0 +1,78 @@
+# GitHub Email Update Recipe
+id: github
+name: GitHub
+category: Developer
+difficulty: medium
+
+login:
+  url: "https://github.com/login"
+  username_selector: "#login_field"
+  password_selector: "#password"
+  submit_selector: "input[type='submit'][value='Sign in']"
+  wait_after_login: 3000
+  may_require_2fa: true
+
+profile_flow:
+  steps:
+    - action: navigate
+      url: "https://github.com/settings/emails"
+      description: "Navigate to email settings"
+
+    - action: wait
+      selector: "input[name='user_email']"
+      timeout: 5000
+      description: "Wait for email settings page"
+
+    - action: fill
+      selector: "input[name='user_email']"
+      value: "{{NEW_EMAIL}}"
+      description: "Enter new email address"
+
+    - action: click
+      selector: "button[type='submit']:has-text('Add')"
+      description: "Click Add email button"
+
+    - action: wait
+      selector: "text=A confirmation email has been sent"
+      timeout: 5000
+      description: "Wait for confirmation message"
+
+    - action: waitForEmailVerification
+      timeout: 300000
+      description: "Wait for email verification"
+
+    - action: navigate
+      url: "https://github.com/settings/emails"
+      description: "Return to email settings after verification"
+
+    - action: click
+      selector: "button[aria-label*='{{NEW_EMAIL}}']:has-text('Primary')"
+      description: "Set new email as primary"
+
+    - action: wait
+      timeout: 2000
+      description: "Wait for primary email update"
+
+verification:
+  required: true
+  email_subject_contains: "verify your email address"
+  verification_link_pattern: "https://github\\.com/.*verify.*"
+
+notes: |
+  GitHub allows multiple email addresses. This recipe adds the new email,
+  verifies it, and sets it as primary. You may want to manually remove
+  the old email after confirming everything works.
+
+manual_fallback: |
+  1. Log in to GitHub
+  2. Go to Settings > Emails
+  3. Add your new email address
+  4. Check your new email for verification link
+  5. Click the verification link
+  6. Return to Settings > Emails
+  7. Set the new email as Primary
+  8. Optionally remove the old email
+
+warnings:
+  - "2FA may be required during login"
+  - "Keep old email until you've confirmed access with the new one"
